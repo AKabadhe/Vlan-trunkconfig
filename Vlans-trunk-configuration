@@ -1,0 +1,76 @@
+LANS, TRUNK, DYNAMIC TRUNKING PROTOCOL
+
+SW1,2,3
+!
+en
+ 
+config t 
+
+VLAN 10 
+
+NAME IT
+
+exit
+
+!
+
+config t 
+
+VLAN 20
+
+NAME ACCT
+
+exit
+
+!
+
+config t 
+
+VLAN 30
+
+NAME SALES 
+
+exit
+
+SW1,2,3
+!
+int f0/5 
+switchport mode access
+
+switchport access Vlan 10
+exit
+!
+int f0/4
+switchport mode access
+
+switchport access Vlan 20
+exit
+!
+int f0/3
+switchport mode access
+
+switchport access Vlan 30
+
+SW1,1,2,3
+int f0/1
+
+switchport mode trunk
+exit
+!
+int f0/2
+
+switchport mode trunk
+!
+SW1
+int f0/1
+
+switchport mode Dynamic Desirable
+!
+int f0/2
+
+switchport mode Dynamic Desirable
+
+SW3
+!
+int f0/2
+switchport mode Dynamic Desirable
